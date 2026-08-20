@@ -1,0 +1,26 @@
+Member360 PostgreSQL migration notes
+
+Architecture after this update:
+React -> FastAPI -> SQLAlchemy -> PostgreSQL
+
+Changes:
+1. data.py renamed to backend/seed_data.py. It is seed/migration input only.
+2. rag_pipeline.py now reads through db.DataStore (PostgreSQL), not seed data.
+3. main.py creates/verifies tables only; it does not import or seed legacy data at runtime.
+4. init_db.py is the explicit one-time database initialization/seed command.
+5. db.py automatically resolves duplicate synthetic claim_id and authorization_id values during seed migration using deterministic member-qualified IDs, so PostgreSQL primary-key constraints are respected without manually editing seed records.
+
+First-time setup from backend directory:
+  Copy-Item .env.example .env
+  # Edit .env and set the real PostgreSQL password in DATABASE_URL.
+  python init_db.py
+  python -m uvicorn main:app --reload
+
+Frontend (new terminal, frontend directory):
+  npm.cmd install
+  npm.cmd run dev
+
+Important:
+- Keep seed_data.py if you want to recreate/demo the database later.
+- Normal application runtime reads PostgreSQL, not seed_data.py.
+- Do not commit a .env containing real passwords or secrets.
