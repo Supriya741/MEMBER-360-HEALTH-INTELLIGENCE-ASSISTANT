@@ -10,6 +10,14 @@ const TITLES = {
 
 export default function AppLayout() {
   const location = useLocation()
+
+  const token = localStorage.getItem('m360_token')
+
+  if (!token) {
+    window.location.replace('/sign.html')
+    return null
+  }
+
   let title = TITLES[location.pathname]
   if (!title) {
     if (location.pathname.includes('ai-summary')) title = 'AI Summary'
