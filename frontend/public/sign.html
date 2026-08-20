@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member 360° Health Intelligence - Sign In</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* --- Reset & Core Variables --- */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --brand-green-dark: #0b3d26;
+      --brand-green-base: #0f4b30;
+      --brand-green-light: #166534;
+      --brand-green-muted: #8eb39d;
+      --brand-green-subtle: #dcfce7;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --border-color: #e2e8f0;
+      --border-focus: #0f4b30;
+      --bg-white: #ffffff;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      font-family: var(--font-family);
+      background-color: var(--bg-white);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* --- Main Layout Grid --- */
+    .app-container {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* ==========================================================
+           LEFT PANEL: Branding & Visual Experience
+           ========================================================== */
+    .left-panel {
+      background-color: #0b3822;
+      background-image:
+        radial-gradient(circle at 50% 40%, rgba(22, 101, 52, 0.45) 0%, rgba(11, 56, 34, 0.95) 70%),
+        radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 40%);
+      color: #ffffff;
+      padding: 48px 56px 36px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle glowing accents in the background */
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, rgba(11, 56, 34, 0) 70%);
+      border-radius: 50%;
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    /* Top Brand Logo */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 2;
+    }
+
+    .logo-icon-card {
+      width: 48px;
+      height: 48px;
+      background-color: #ffffff;
+      color: #0b3822;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .brand-title-group h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .brand-title-group p {
+      font-size: 13.5px;
+      color: var(--brand-green-muted);
+      font-weight: 500;
+      margin-top: 1px;
+      letter-spacing: -0.2px;
+    }
+
+    /* Center Illustration Container */
+    .illustration-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: auto 0;
+      padding: 20px 0;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .illustration-wrapper {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .illustration-img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      border-radius: 16px;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Hero Text Below Illustration */
+    .hero-copy {
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .hero-copy h2 {
+      font-size: 34px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.6px;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .hero-copy p {
+      font-size: 20px;
+      color: #a7cfba;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+    }
+
+    /* Left Panel Footer */
+    .left-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #79a88e;
+      z-index: 2;
+      padding-top: 24px;
+    }
+
+    .left-footer .version-tag {
+      font-family: inherit;
+      color: #79a88e;
+    }
+
+    /* ==========================================================
+           RIGHT PANEL: Authentication Form & Security Badges
+           ========================================================== */
+    .right-panel {
+      background-color: var(--bg-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* Center Content Box */
+    .auth-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 450px;
+      width: 100%;
+      margin: auto;
+      padding: 60px 24px 30px 24px;
+    }
+
+    .auth-header {
+      margin-bottom: 32px;
+    }
+
+    .auth-header h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #0b192c;
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+
+    .auth-header p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Form Controls */
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e293b;
+      letter-spacing: -0.1px;
+    }
+
+    .forgot-password-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0f4b30;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .forgot-password-link:hover {
+      color: #07291a;
+      text-decoration: underline;
+    }
+
+    /* Input with Leading & Trailing Icons */
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon-left {
+      position: absolute;
+      left: 15px;
+      color: #94a3b8;
+      font-size: 15px;
+      pointer-events: none;
+      transition: color 0.2s ease;
+    }
+
+    .input-icon-right {
+      position: absolute;
+      right: 15px;
+      color: #94a3b8;
+      font-size: 15px;
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .input-icon-right:hover {
+      color: #475569;
+    }
+
+    .text-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 42px 0 42px;
+      font-size: 14.5px;
+      font-family: inherit;
+      color: #1e293b;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .text-input::placeholder {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .text-input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(15, 75, 48, 0.12);
+    }
+
+    .text-input:focus+.input-icon-left {
+      color: var(--border-focus);
+    }
+
+    /* Checkbox */
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 2px;
+    }
+
+    .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 17px;
+      height: 17px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      background-color: #fff;
+      transition: all 0.15s ease;
+    }
+
+    .custom-checkbox:checked {
+      background-color: var(--brand-green-base);
+      border-color: var(--brand-green-base);
+    }
+
+    .custom-checkbox:checked::after {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: #ffffff;
+      font-size: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .checkbox-label {
+      font-size: 13.5px;
+      color: #475569;
+      cursor: pointer;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 50px;
+      background-color: #0b3d26;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(11, 61, 38, 0.2);
+      margin-top: 6px;
+    }
+
+    .submit-btn:hover {
+      background-color: #062b1a;
+      box-shadow: 0 4px 12px rgba(11, 61, 38, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn i {
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    /* Auth Alert Banner */
+    .auth-alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .auth-alert.error {
+      background-color: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .auth-alert.success {
+      background-color: #f0fdf4;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .auth-alert i {
+      font-size: 16px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .register-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .register-modal.active {
+      display: flex;
+    }
+
+    .register-card {
+      width: min(500px, 100%);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+
+    .register-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .register-header h3 {
+      font-size: 24px;
+      color: #0b192c;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .register-close {
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .register-body {
+      padding: 20px 22px 22px;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .register-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .register-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #475569;
+    }
+
+    .register-field input,
+    .register-field select {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .register-field input:focus,
+    .register-field select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(15, 75, 48, 0.12);
+    }
+
+    .register-submit {
+      width: 100%;
+      margin-top: 4px;
+      height: 48px;
+      border: none;
+      border-radius: 10px;
+      background: #0b3d26;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .register-submit:hover {
+      background: #062b1a;
+    }
+
+    /* Demo Accounts Selector Card */
+    .demo-accounts-card {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 4px;
+    }
+
+    .demo-accounts-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .demo-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .chip-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+      color: #0f4b30;
+    }
+
+    .chip-btn.active {
+      background: #e8f5ed;
+      border-color: #0f4b30;
+      color: #0f4b30;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Divider */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 28px 0;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .auth-divider span {
+      padding: 0 16px;
+    }
+
+    /* SSO Google Button */
+    .sso-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      height: 48px;
+      background-color: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sso-btn:hover {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .google-icon-svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* Right Panel Footer */
+    .security-footer {
+      border-top: 1px solid #f1f5f9;
+      padding: 24px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    /* Legal Links */
+    .legal-links {
+      font-size: 13px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legal-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .legal-links a:hover {
+      color: #0f4b30;
+      text-decoration: underline;
+    }
+
+    .legal-links .sep-dot {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    /* ==========================================================
+           LEGAL & POLICY MODAL DIALOGS
+           ========================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 25, 44, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 24px 16px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 780px;
+      max-height: 86vh;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      background-color: #0b3822;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header-icon {
+      width: 38px;
+      height: 38px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .modal-header-text h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+
+    .modal-header-text p {
+      font-size: 12px;
+      color: #a4c5b4;
+      margin-top: 1px;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: background 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-body {
+      padding: 28px;
+      overflow-y: auto;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .modal-body h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0b3822;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-body h4:first-child {
+      margin-top: 0;
+    }
+
+    .modal-body p {
+      margin-bottom: 12px;
+      color: #475569;
+    }
+
+    .modal-body ul {
+      margin-left: 20px;
+      margin-bottom: 14px;
+      color: #475569;
+    }
+
+    .modal-body li {
+      margin-bottom: 5px;
+    }
+
+    .modal-callout {
+      background-color: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin: 14px 0;
+      font-size: 13px;
+      color: #166534;
+    }
+
+    .modal-callout.warning {
+      background-color: #fffbeb;
+      border-left-color: #f59e0b;
+      color: #92400e;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-footer-info {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .modal-action-btn {
+      padding: 9px 20px;
+      background-color: #0b3d26;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .modal-action-btn:hover {
+      background-color: #062b1a;
+    }
+
+    /* ==========================================================
+           RESPONSIVE DESIGN (Tablets & Mobile)
+           ========================================================== */
+    @media (max-width: 1024px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .left-panel {
+        padding: 40px 30px;
+        min-height: 480px;
+      }
+
+      .illustration-wrapper {
+        max-width: 380px;
+      }
+
+      .hero-copy h2 {
+        font-size: 28px;
+      }
+
+      .hero-copy p {
+        font-size: 17px;
+      }
+
+      .auth-container {
+        padding: 48px 24px;
+      }
+
+      .security-badges-row {
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .left-panel {
+        padding: 32px 20px;
+      }
+
+      .hero-copy h2 {
+        font-size: 24px;
+      }
+
+      .hero-copy p {
+        font-size: 15px;
+      }
+
+      .left-footer {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+
+      .auth-header h2 {
+        font-size: 26px;
+      }
+
+      .security-badges-row {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- ==========================================
+             LEFT SIDE: Branding, Visuals & Tagline
+             ========================================== -->
+    <aside class="left-panel" aria-label="Brand Overview">
+
+      <!-- Top Branding Header -->
+      <div class="brand-header">
+        <div class="logo-icon-card" aria-hidden="true">
+          <i class="fa-solid fa-briefcase-medical"></i>
+        </div>
+        <div class="brand-title-group">
+          <h1>Member 360°</h1>
+          <p>Health Intelligence</p>
+        </div>
+      </div>
+
+      <!-- Central Illustration Graphic & Copy -->
+      <div class="illustration-container">
+        <div class="illustration-wrapper">
+          <!-- High-fidelity custom vector illustration -->
+          <img src="illustration.jpg"
+            alt="Healthcare professionals collaborating with health intelligence analytics dashboard"
+            class="illustration-img"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';">
+        </div>
+
+        <div class="hero-copy">
+          <h2>One view. Every insight.</h2>
+          <p>Smarter decisions for better care.</p>
+        </div>
+      </div>
+
+      <!-- Left Panel Footer -->
+      <footer class="left-footer">
+        <span class="copyright">&copy; 2024 Member 360&deg; Health Intelligence.</span>
+        <span class="version-tag">v. 4.2.0 (Stable)</span>
+      </footer>
+
+    </aside>
+
+
+    <!-- ==========================================
+             RIGHT SIDE: Secure Access Login Form
+             ========================================== -->
+    <main class="right-panel" aria-label="Sign In Area">
+
+      <div class="auth-container">
+
+        <!-- Title & Description -->
+        <header class="auth-header">
+          <h2>Secure Access</h2>
+          <p>Enter your credentials to access the health intelligence dashboard.</p>
+        </header>
+
+        <!-- Authentication Form -->
+        <form class="auth-form" id="loginForm" onsubmit="handleAuthSubmit(event)">
+
+          <!-- Auth Alert Banner (Populated via JS) -->
+          <div id="authAlert" class="auth-alert error" style="display: none;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div id="authAlertText">Invalid credentials</div>
+          </div>
+
+          <!-- Username / Email Input -->
+          <div class="form-field">
+            <label for="orgId" class="field-label">Organizational ID, Username, or Email</label>
+            <div class="input-group">
+              <i class="fa-regular fa-user input-icon-left" aria-hidden="true"></i>
+              <input type="text" id="orgId" name="organizationalId" class="text-input"
+                placeholder="e.g., admin or user@hospital.org" value="" autocomplete="username" required>
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="form-field">
+            <div class="field-label-row">
+              <label for="passwordInput" class="field-label">Password</label>
+              <a href="javascript:void(0)" onclick="openLegalModal('forgot')" class="forgot-password-link"
+                tabindex="0">Forgot password?</a>
+            </div>
+            <div class="input-group">
+              <i class="fa-solid fa-lock input-icon-left" aria-hidden="true"></i>
+              <input type="password" id="passwordInput" name="password" class="text-input" value=""
+                placeholder="Enter password" autocomplete="current-password" required>
+              <i class="fa-regular fa-eye-slash input-icon-right" id="togglePasswordBtn"
+                title="Toggle password visibility" role="button" tabindex="0"
+                aria-label="Toggle password visibility"></i>
+            </div>
+          </div>
+
+          <!-- Remember Device Checkbox -->
+          <div class="checkbox-container">
+            <input type="checkbox" id="rememberDevice" class="custom-checkbox" checked>
+            <label for="rememberDevice" class="checkbox-label">Remember this device</label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span>Sign In to Organization</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+
+          <div class="register-link-row">
+            <span>Need an account?</span>
+            <a href="javascript:void(0)" class="register-link" onclick="openRegisterModal()">Register now</a>
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Right Panel Footer -->
+      <footer class="security-footer">
+        <div class="legal-links">
+          <a href="javascript:void(0)" onclick="openLegalModal('privacy')">Privacy Policy</a>
+          <span class="sep-dot" aria-hidden="true">&bull;</span>
+          <a href="javascript:void(0)" onclick="openLegalModal('terms')">Terms of Service</a>
+        </div>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- ==========================================
+         PRIVACY POLICY MODAL
+         ========================================== -->
+  <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle"
+    onclick="handleBackdropClick(event, 'privacyModal')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-header-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="modal-header-text">
+            <h3 id="privacyTitle">Privacy Policy</h3>
+            <p>Member 360° Health Intelligence Assistant &bull; v4.2.0</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeLegalModal('privacyModal')"
+          aria-label="Close Privacy Policy">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-callout">
+          <strong>HIPAA & SOC 2 Compliance Guarantee:</strong> Member 360° is committed to rigorous data
+          protection standards. Patient data is encrypted with military-grade AES-256 and is never used to
+          train public AI models.
+        </div>
+
+        <h4><i class="fa-solid fa-layer-group"></i> 1. Scope & Protected Health Information (PHI)</h4>
+        <p>This Privacy Policy governs the processing of clinical analytics, patient encounter metadata, and
+          user interactions within the Member 360° Health Intelligence Assistant. All PHI handling strictly
+          complies with the Health Insurance Portability and Accountability Act (HIPAA), HITECH, and executed
+          Business Associate Agreements (BAAs).</p>
+
+        <h4><i class="fa-solid fa-robot"></i> 2. Artificial Intelligence & Assistant Privacy</h4>
+        <p>The Member 360° Health Intelligence Assistant operates under strict ethical AI principles:</p>
+        <ul>
+          <li><strong>Tenant Isolation:</strong> Queries and clinical analyses are processed in single-tenant,
+            isolated virtual private environments.</li>
+          <li><strong>No Public Model Training:</strong> Your clinical data, notes, and search prompts are
+            never utilized to train external public foundation models.</li>
+          <li><strong>Tamper-Evident Auditing:</strong> All clinical suggestions and queries are recorded with
+            immutable timestamps for compliance audits.</li>
+        </ul>
+
+        <h4><i class="fa-solid fa-lock"></i> 3. Security & Encryption Standards</h4>
+        <p>We deploy enterprise defense-in-depth protocols:</p>
+        <ul>
+          <li><strong>Encryption at Rest:</strong> AES-256 encryption applied across all databases, file
+            stores, and backups.</li>
+          <li><strong>Encryption in Transit:</strong> Enforced TLS 1.3 encryption across all API gateways and
+            web sockets.</li>
+          <li><strong>Access Governance:</strong> Role-Based Access Control (RBAC) and Multi-Factor
+            Authentication (MFA) prevent unauthorized access.</li>
+        </ul>
+
+        <h4><i class="fa-solid fa-database"></i> 4. Data Collection & Purpose</h4>
+        <p>Information processed includes institutional credentials (email, name, role), clinical metrics for
+          risk stratification, care gap identification, and diagnostic support indices.</p>
+
+        <h4><i class="fa-solid fa-envelope"></i> 5. Governance & Inquiries</h4>
+        <p>For data privacy queries or audit log export requests, contact the Data Protection Officer at <a
+            href="mailto:privacy@member360health.org"
+            style="color: #0f4b30; font-weight: 600;">privacy@member360health.org</a>.</p>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-footer-info">Last Updated: August 2024</span>
+        <button type="button" class="modal-action-btn" onclick="closeLegalModal('privacyModal')">I
+          Understand</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+         TERMS OF SERVICE / CONDITIONS MODAL
+         ========================================== -->
+  <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle"
+    onclick="handleBackdropClick(event, 'termsModal')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-header-icon">
+            <i class="fa-solid fa-file-contract"></i>
+          </div>
+          <div class="modal-header-text">
+            <h3 id="termsTitle">Terms and Conditions</h3>
+            <p>Member 360° Health Intelligence Assistant &bull; v4.2.0</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeLegalModal('termsModal')"
+          aria-label="Close Terms of Service">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-callout warning">
+          <strong><i class="fa-solid fa-triangle-exclamation"></i> Clinical Decision Support
+            Disclaimer:</strong> Member 360° Health Intelligence Assistant is designed to augment healthcare
+          providers. It is not an autonomous diagnostic device. All final clinical decisions and treatment
+          plans remain the sole responsibility of licensed attending clinicians.
+        </div>
+
+        <h4><i class="fa-solid fa-hospital-user"></i> 1. Authorized Institutional Access</h4>
+        <p>Access is strictly reserved for authorized clinicians and administrators affiliated with contracted
+          healthcare organizations. Authentication must occur via approved institutional single sign-on (SSO)
+          or verified credentials.</p>
+
+        <h4><i class="fa-solid fa-user-check"></i> 2. User Obligations & Credential Confidentiality</h4>
+        <ul>
+          <li><strong>Individual Responsibility:</strong> Users are strictly prohibited from sharing login
+            credentials, session tokens, or MFA codes.</li>
+          <li><strong>Session Security:</strong> Clinical workstations must be locked when left unattended.
+          </li>
+          <li><strong>Permitted Use:</strong> The assistant must only be queried for authorized clinical
+            decision support, population health management, and operational analytics.</li>
+        </ul>
+
+        <h4><i class="fa-solid fa-brain"></i> 3. Assistant & Analytics Utilization</h4>
+        <p>AI-synthesized summaries, risk calculations, and care suggestions must be reviewed and validated by a
+          qualified practitioner prior to taking clinical action.</p>
+
+        <h4><i class="fa-solid fa-shield-halved"></i> 4. Intellectual Property Rights</h4>
+        <p>All algorithms, interfaces, clinical ontology mappings, and software models are proprietary assets of
+          Member 360°. Unauthorized scraping, decompilation, or redistribution is strictly prohibited.</p>
+
+        <h4><i class="fa-solid fa-scale-balanced"></i> 5. Limitation of Liability</h4>
+        <p>Member 360° shall not be held liable for indirect, punitive, or consequential damages resulting from
+          clinical misinterpretations or unauthorized credential sharing outside organizational security
+          policies.</p>
+
+        <h4><i class="fa-solid fa-envelope"></i> 6. Legal & Support Contact</h4>
+        <p>For legal inquiries regarding these Terms, contact our Legal Department at <a
+            href="mailto:legal@member360health.org"
+            style="color: #0f4b30; font-weight: 600;">legal@member360health.org</a>.</p>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-footer-info">Enterprise Clinical License Agreement</span>
+        <button type="button" class="modal-action-btn" onclick="closeLegalModal('termsModal')">Accept &
+          Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+         FORGOT PASSWORD MODAL
+         ========================================== -->
+  <div class="modal-overlay" id="forgotModal" role="dialog" aria-modal="true" aria-labelledby="forgotTitle"
+    onclick="handleBackdropClick(event, 'forgotModal')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-header-icon">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <div class="modal-header-text">
+            <h3 id="forgotTitle">Password Recovery</h3>
+            <p>Member 360° Health Intelligence Assistant</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeLegalModal('forgotModal')"
+          aria-label="Close Password Recovery">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-callout">
+          <strong>Password Recovery:</strong> Enter your institutional email address to send a password reset
+          verification link through your hospital identity provider.
+        </div>
+
+        <h4><i class="fa-solid fa-envelope-circle-check"></i> Self-Service Reset</h4>
+        <p>Enter your verified institutional email address to receive secure reset instructions.</p>
+        <div class="input-group" style="margin: 12px 0;">
+          <i class="fa-regular fa-envelope input-icon-left"></i>
+          <input type="email" id="resetEmailInput" class="text-input" placeholder="user@hospital.org" value="">
+        </div>
+        <div id="resetSuccessMsg"
+          style="display: none; color: #16a34a; font-size: 13px; font-weight: 600; margin-top: 6px;">
+          <i class="fa-solid fa-check"></i> Reset instructions sent to your institutional email.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-action-btn" style="background-color: #64748b;"
+          onclick="closeLegalModal('forgotModal')">Cancel</button>
+        <button type="button" class="modal-action-btn" onclick="handleSendReset()">Send Reset Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Script -->
+  <script>
+    // Determine backend API host dynamically (supports localhost and multi-laptop network access)
+    const API_BASE = (window.location.protocol.startsWith('http') && window.location.hostname && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
+      ? `${window.location.protocol}//${window.location.hostname}:8000/api`
+      : 'http://localhost:8000/api';
+
+    // Password Visibility Toggle
+    const passwordInput = document.getElementById('passwordInput');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+
+    function togglePassword() {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        togglePasswordBtn.classList.remove('fa-eye-slash');
+        togglePasswordBtn.classList.add('fa-eye');
+      } else {
+        passwordInput.type = 'password';
+        togglePasswordBtn.classList.remove('fa-eye');
+        togglePasswordBtn.classList.add('fa-eye-slash');
+      }
+    }
+
+    if (togglePasswordBtn) {
+      togglePasswordBtn.addEventListener('click', togglePassword);
+      togglePasswordBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePassword();
+        }
+      });
+    }
+
+    // Alert display helper
+    function showAlert(message, isError = true) {
+      const alertBox = document.getElementById('authAlert');
+      const alertText = document.getElementById('authAlertText');
+      if (alertBox && alertText) {
+        alertBox.className = `auth-alert ${isError ? 'error' : 'success'}`;
+        alertText.innerHTML = message;
+        alertBox.style.display = 'flex';
+      }
+    }
+
+    function hideAlert() {
+      const alertBox = document.getElementById('authAlert');
+      if (alertBox) alertBox.style.display = 'none';
+    }
+
+    // Legal & Utility Modals Controller
+    function openLegalModal(type) {
+      let modalId = 'privacyModal';
+      if (type === 'terms') modalId = 'termsModal';
+      if (type === 'forgot') modalId = 'forgotModal';
+
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLegalModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleBackdropClick(event, modalId) {
+      if (event.target.id === modalId) {
+        closeLegalModal(modalId);
+      }
+    }
+
+    function handleSendReset() {
+      const msg = document.getElementById('resetSuccessMsg');
+      if (msg) {
+        msg.style.display = 'block';
+        setTimeout(() => {
+          closeLegalModal('forgotModal');
+          msg.style.display = 'none';
+        }, 1500);
+      }
+    }
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLegalModal('privacyModal');
+        closeLegalModal('termsModal');
+        closeLegalModal('forgotModal');
+      }
+    });
+
+    function openRegisterModal() {
+      const modal = document.getElementById('registerModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeRegisterModal() {
+      const modal = document.getElementById('registerModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById('registerName').value.trim();
+      const username = document.getElementById('registerUsername').value.trim();
+      const role = document.getElementById('registerRole').value;
+      const password = document.getElementById('registerPassword').value.trim();
+      const confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
+
+      if (!fullName || !username || !password) {
+        showAlert('Please complete all account details.');
+        return;
+      }
+
+      if (password.length < 6) {
+        showAlert('Password must be at least 6 characters long.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showAlert('Passwords do not match. Please re-enter them.');
+        return;
+      }
+
+      localStorage.setItem('m360_name', fullName);
+      localStorage.setItem('m360_display_name', fullName);
+      localStorage.setItem('m360_username', username);
+      localStorage.setItem('m360_role', role);
+      localStorage.setItem('m360_token', `demo-token-${username}`);
+      localStorage.setItem('m360_org_authenticated', 'true');
+
+      closeRegisterModal();
+      const destination = role === 'Admin' ? '/dashboard' : `/members/${encodeURIComponent(username.toUpperCase())}`;
+      if (window.location.pathname.endsWith('.html') || window.location.protocol === 'file:') {
+        window.location.href = role === 'Admin' ? 'welcome.html' : `welcome.html#member-${username.toUpperCase()}`;
+        return;
+      }
+      window.location.href = destination;
+    }
+
+    // Form Submit Handler (Live Backend Authentication)
+    async function handleAuthSubmit(e) {
+      e.preventDefault();
+      hideAlert();
+
+      const orgId = document.getElementById('orgId').value.trim();
+      const password = passwordInput.value.trim();
+      const btn = document.getElementById('submitBtn');
+
+      if (!orgId || !password) {
+        showAlert('Please enter both your Organizational ID / Username and Password.');
+        return;
+      }
+
+      if (btn) {
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
+        btn.style.opacity = '0.85';
+        btn.disabled = true;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: orgId,
+            password: password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || 'Authentication failed. Please check your credentials.');
+        }
+
+        // Save session state to localStorage
+        const memberId = (data.username || orgId || '').toUpperCase();
+        localStorage.setItem('m360_token', data.token || `demo-token-${orgId}`);
+        localStorage.setItem('m360_display_name', data.display_name || orgId);
+        localStorage.setItem('m360_role', data.role || 'Authorized User');
+        localStorage.setItem('m360_username', data.username || orgId);
+        localStorage.setItem('m360_org_authenticated', 'true');
+        if (data.role === 'Member') localStorage.setItem('m360_member_id', memberId);
+        if (data.email) localStorage.setItem('m360_email', data.email);
+
+        if (btn) {
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> Authenticated';
+          btn.style.backgroundColor = '#15803d';
+        }
+
+        setTimeout(() => {
+          if (data.role === 'Member') {
+            window.location.href = `/members/${encodeURIComponent(memberId)}`;
+            return;
+          }
+          navigateToWelcomePage();
+        }, 350);
+
+      } catch (err) {
+        console.warn('Backend API connection failed, checking offline demo credentials:', err);
+        
+        // Fallback local authentication for standalone execution (when backend is not running)
+        const idLower = orgId.toLowerCase();
+        let fallbackUser = null;
+        
+        if (idLower === 'admin' && (password === 'demo1234' || password === 'admin')) {
+          fallbackUser = { username: 'admin', role: 'Administrator', display_name: 'System Administrator', email: 'admin@hospital.org' };
+        } else if (idLower === 'clinician' && (password === 'demo1234' || password === 'clinician')) {
+          fallbackUser = { username: 'clinician', role: 'Clinician', display_name: 'Dr. Alan Cho, MD', email: 'clinician@hospital.org' };
+        } else if (idLower === 'caremanager' && (password === 'demo1234' || password === 'caremanager')) {
+          fallbackUser = { username: 'caremanager', role: 'Care Manager', display_name: 'Care Manager', email: 'caremanager@hospital.org' };
+        } else if (idLower === 'servicerep' && (password === 'demo1234' || password === 'servicerep')) {
+          fallbackUser = { username: 'servicerep', role: 'Service Rep', display_name: 'Service Rep', email: 'servicerep@hospital.org' };
+        } else if (idLower === 'user' && (password === 'password123' || password === 'demo1234')) {
+          fallbackUser = { username: 'user', role: 'Clinical Specialist', display_name: 'Dr. Sarah Williams', email: 'user@hospital.org' };
+        } else if (orgId.toUpperCase().startsWith('MEM') && orgId.toUpperCase() === password.toUpperCase()) {
+          fallbackUser = { username: orgId.toUpperCase(), role: 'Member', display_name: 'Member User', email: 'member@example.com' };
+        }
+
+        if (fallbackUser) {
+          const fallbackMemberId = fallbackUser.role === 'Member' ? (fallbackUser.username || orgId).toUpperCase() : '';
+          localStorage.setItem('m360_token', `demo-token-${fallbackUser.username}`);
+          localStorage.setItem('m360_display_name', fallbackUser.display_name);
+          localStorage.setItem('m360_role', fallbackUser.role);
+          localStorage.setItem('m360_username', fallbackUser.username);
+          localStorage.setItem('m360_org_authenticated', 'true');
+          if (fallbackUser.role === 'Member') localStorage.setItem('m360_member_id', fallbackMemberId);
+          if (fallbackUser.email) localStorage.setItem('m360_email', fallbackUser.email);
+
+          if (btn) {
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Authenticated (Offline Mode)';
+            btn.style.backgroundColor = '#15803d';
+          }
+          setTimeout(() => {
+            if (fallbackUser.role === 'Member') {
+              window.location.href = `/members/${encodeURIComponent(fallbackMemberId)}`;
+              return;
+            }
+            navigateToWelcomePage();
+          }, 350);
+          return;
+        }
+
+        showAlert(err.message || 'Unable to connect to the authentication server. Please ensure the backend is running at localhost:8000.');
+        if (btn) {
+          btn.innerHTML = '<span>Sign In to Organization</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
+          btn.style.backgroundColor = '';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        }
+      }
+    }
+
+    // Destination navigation helper to welcome page
+    function navigateToWelcomePage() {
+      if (window.location.pathname.endsWith('.html') || window.location.protocol === 'file:') {
+        window.location.href = 'welcome.html';
+      } else {
+        window.location.href = '/welcome';
+      }
+    }
+  </script>
+
+  <div class="register-modal" id="registerModal" aria-modal="true" role="dialog">
+    <div class="register-card">
+      <div class="register-header">
+        <h3>Create Account</h3>
+        <button type="button" class="register-close" aria-label="Close" onclick="closeRegisterModal()">×</button>
+      </div>
+      <div class="register-body">
+        <form class="register-form" onsubmit="handleRegisterSubmit(event)">
+          <div class="register-field">
+            <label for="registerName">Full Name</label>
+            <input id="registerName" type="text" placeholder="Enter full name" required>
+          </div>
+
+          <div class="register-field">
+            <label for="registerUsername">Username</label>
+            <input id="registerUsername" type="text" placeholder="Choose a username" required>
+          </div>
+
+          <div class="register-form-row">
+            <div class="register-field">
+              <label for="registerRole">Role</label>
+              <select id="registerRole">
+                <option value="Member">Member</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            <div class="register-field">
+              <label for="registerPassword">Password</label>
+              <input id="registerPassword" type="password" placeholder="Create password" required>
+            </div>
+          </div>
+
+          <div class="register-field">
+            <label for="registerConfirmPassword">Confirm Password</label>
+            <input id="registerConfirmPassword" type="password" placeholder="Re-enter password" required>
+          </div>
+
+          <button type="submit" class="register-submit">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
